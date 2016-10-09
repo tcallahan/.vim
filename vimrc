@@ -41,6 +41,7 @@ if &t_Co > 2 || has("gui_running")
   "set incsearch
   " Turn on filetype syntax coloring. syntax on will also do filetype on
   syntax on
+  colorscheme Tomorrow-Night-Bright
 endif
 
 " Turn on show matching parenthesis
