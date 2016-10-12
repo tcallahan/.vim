@@ -7,6 +7,9 @@
 " This shouldnt be needed but who knows depending on system wide settings
 set nocompatible
 
+" Enable pathogen plug-in manager
+execute pathogen#infect()
+
 " Command history to remember
 set history=100
 
