@@ -7,6 +7,11 @@
 " This shouldnt be needed but who knows depending on system wide settings
 set nocompatible
 
+" Set the leader key to space
+let mapleader=" "
+" Short-cut to enable reloading .vimrc configuration while editing .vimrc
+map <leader>s :source ~/.vimrc<CR>
+
 " Enable pathogen plug-in manager
 execute pathogen#infect()
 
