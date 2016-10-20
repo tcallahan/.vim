@@ -30,6 +30,13 @@ set showcmd
 " Turn on line numbering
 set number
 
+" Turn on show matching parenthesis
+set showmatch
+
+" For some systems/terminal combinations, set these so that the backspace key can will delete properly over
+" linebreaks, auto-expanded tabs, auto-indented lines, etc.
+set backspace=indent,eol,start
+
 " I like tabs that are 2 spaces wide
 " Enable autoindent and replace tabs with spaces, etc.
 set tabstop=2
@@ -52,17 +59,16 @@ if &t_Co > 2 || has("gui_running")
   colorscheme Tomorrow-Night-Bright
 endif
 
-" Turn on show matching parenthesis
-set showmatch
-
-" For some systems/terminal combinations, set these so that the backspace key can will delete properly over
-" linebreaks, auto-expanded tabs, auto-indented lines, etc.
-set backspace=indent,eol,start
-
 " Check when vim starts if the terminal has support for a mouse, in which case, enable it
 if has('mouse')
   set mouse=a
 endif
+
+" NERDTree settings
+let NERDTreeShowHidden=1
+let NERDTreeIgnore=['\.DS_Store', '\~$', '\.swp']
+nmap <leader>n :NERDTreeToggle<CR>
+nmap <leader>j :NERDTreeFind<CR>
 
 " Convenience command to pretty-format a JSON file
 if !exists(":FormatJSON")
