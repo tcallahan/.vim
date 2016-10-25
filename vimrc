@@ -7,6 +7,11 @@
 " This shouldnt be needed but who knows depending on system wide settings
 set nocompatible
 
+" Enable detection of file types
+filetype on
+filetype plugin on
+syntax on
+
 " Set the leader key to space
 let mapleader=" "
 " Short-cut to enable reloading .vimrc configuration while editing .vimrc
@@ -45,26 +50,33 @@ set expandtab
 set smartindent
 set autoindent
 
-if &t_Co > 2 || has("gui_running")
-  " Turn on search highlighting,
-  set hlsearch
-  " Set the return key to 'cancel' a search
-  nnoremap <CR> :noh<CR><CR>
-  " Incremental search is off by default, and since it is slow with the very large log
-  " files on remote hosts that I typically deal with, I leave it off by default also.
-  " I have it here for convenience.
-  "set incsearch
-  " Turn on filetype syntax coloring. syntax on will also do filetype on
-  syntax on
-  colorscheme Tomorrow-Night-Bright
-endif
+" Turn on search highlighting,
+set hlsearch
+" Set the return key to 'cancel' a search
+nnoremap <CR> :noh<CR><CR>
+" Incremental search is off by default, and since it is slow with the very large log
+" files on remote hosts that I typically deal with, I leave it off by default also.
+" I have it here for convenience.
+"set incsearch
+" Turn on filetype syntax coloring. syntax on will also do filetype on
+colorscheme Tomorrow-Night-Bright
 
 " Check when vim starts if the terminal has support for a mouse, in which case, enable it
 if has('mouse')
   set mouse=a
 endif
 
-" NERDTree settings
+" Convenience command to pretty-format a JSON file
+if !exists(":FormatJSON")
+  command! FormatJSON %!python -m json.tool
+endif
+
+" ------------------------------------------
+" PLUGIN SETTINGS
+" ------------------------------------------
+
+" ------------------------------------------
+" NERDTree
 let NERDTreeShowHidden=1
 let NERDTreeIgnore=['\.DS_Store', '\~$', '\.swp']
 nmap <leader>n :NERDTreeToggle<CR>
@@ -75,7 +87,17 @@ if has("autocmd")
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 endif
 
-" Convenience command to pretty-format a JSON file
-if !exists(":FormatJSON")
-  command! FormatJSON %!python -m json.tool
-endif
+" ------------------------------------------
+" NERDCommenter
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
