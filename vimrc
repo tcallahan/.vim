@@ -16,12 +16,27 @@ syntax on
 let mapleader=" "
 " Short-cut to enable reloading .vimrc configuration while editing .vimrc
 map <leader>s :source ~/.vimrc<CR>
+" Easier navigation between splits/windows using control key
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
 
 " Enable pathogen plug-in manager
 execute pathogen#infect()
 
+" Enable multiple buffers to be open at a time, just hidden
+set hidden
+
+" Set F2 to toggle paste mode on and off.  This is for pasting from the
+" clipboard
+set pastetoggle=<F2>
+
 " Command history to remember
 set history=100
+
+" Number of undos supported
+set undolevels=1000
 
 " Dont wrap lines of text
 set nowrap
@@ -62,9 +77,9 @@ nnoremap <CR> :noh<CR><CR>
 colorscheme Tomorrow-Night-Bright
 
 " Check when vim starts if the terminal has support for a mouse, in which case, enable it
-if has('mouse')
-  set mouse=a
-endif
+" if has('mouse')
+"   set mouse=a
+" endif
 
 " Convenience command to pretty-format a JSON file
 if !exists(":FormatJSON")
@@ -81,7 +96,7 @@ let NERDTreeShowHidden=1
 let NERDTreeIgnore=['\.DS_Store', '\~$', '\.swp']
 nmap <leader>n :NERDTreeToggle<CR>
 nmap <leader>j :NERDTreeFind<CR>
-if has("autocmd")
+if has('autocmd')
   autocmd VimEnter * NERDTree
   autocmd VimEnter * wincmd p
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
