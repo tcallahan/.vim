@@ -69,6 +69,11 @@ let NERDTreeShowHidden=1
 let NERDTreeIgnore=['\.DS_Store', '\~$', '\.swp']
 nmap <leader>n :NERDTreeToggle<CR>
 nmap <leader>j :NERDTreeFind<CR>
+if has("autocmd")
+  autocmd VimEnter * NERDTree
+  autocmd VimEnter * wincmd p
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+endif
 
 " Convenience command to pretty-format a JSON file
 if !exists(":FormatJSON")
