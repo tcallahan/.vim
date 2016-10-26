@@ -41,6 +41,9 @@ set history=100
 " Number of undos supported
 set undolevels=1000
 
+" Set to always display the status line
+set laststatus=2
+
 " For some systems/terminal combinations, set these so that the backspace key can will delete properly over
 " linebreaks, auto-expanded tabs, auto-indented lines, etc.
 set backspace=indent,eol,start
@@ -57,12 +60,6 @@ set pastetoggle=<F2>
 
 " Dont wrap lines of text
 set nowrap
-
-" Turn on the row,col display, at the bottom right of the terminal
-set ruler
-
-" Show the command that is currently being typed, at the bottom right of the terminal
-set showcmd
 
 " I like tabs that are 2 spaces wide
 " Enable autoindent and replace tabs with spaces, etc.
